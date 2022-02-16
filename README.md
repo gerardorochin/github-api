@@ -1,7 +1,7 @@
 # Development
 
 ```bash
-    # run proyect on background
+    # run project on background
     docker-compose up -d
 
     # run database migrations
