@@ -2,6 +2,10 @@ name: Docker Build
 
 on:
   push:
+    paths:
+      - 'Dockerfile'
+      - 'src/**'
+      - '.github/workflows/build.yml'
     branches:
       - 'main'
 
