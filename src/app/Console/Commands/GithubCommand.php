@@ -38,7 +38,7 @@ class GithubCommand extends Command
         );
 
         $this->newLine();
-        $this->line('Found '.count($repositories).' repositories.');
+        $this->line('Has been imported '.count($repositories).' repositories.');
         $this->newLine();
     }
 }
