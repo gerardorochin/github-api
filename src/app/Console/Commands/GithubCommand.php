@@ -17,9 +17,9 @@ class GithubCommand extends Command
 
     public function handle()
     {
-        $github_user = ($this->option('user') == '?') ? $this->ask('Github User') : $this->option('user');
+        $githubUser = ($this->option('user') == '?') ? $this->ask('Github User') : $this->option('user');
 
-        $github = new GithubImporter($github_user);
+        $github = new GithubImporter($githubUser);
         $import = $github->import();
         $user = $import['user'];
         $repositories = $import['repositories'];

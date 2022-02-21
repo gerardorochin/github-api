@@ -8,16 +8,16 @@ use App\Models\GithubUserRepository;
 
 class GithubImporter
 {
-    protected $github_user = null;
+    protected $githubUser = null;
 
-    public function __construct($github_user)
+    public function __construct($githubUser)
     {
-        $this->github_user = $github_user;
+        $this->githubUser = $githubUser;
     }
 
     public function getUser(): array
     {
-        $user = GitHub::user()->show($this->github_user);
+        $user = GitHub::user()->show($this->githubUser);
         return [
             'github_user_id' => $user['id'],
             'login' => $user['login'],
@@ -30,7 +30,7 @@ class GithubImporter
 
     public function getRepositories(): array
     {
-        $repos = GitHub::user()->repositories($this->github_user);
+        $repos = GitHub::user()->repositories($this->githubUser);
         $userRepositories = [];
 
         foreach ($repos as $repo) {
@@ -49,8 +49,8 @@ class GithubImporter
 
     public function import(): array
     {
-        $user = $this->getUser($this->github_user);
-        $repositories = $this->getRepositories($this->github_user);
+        $user = $this->getUser($this->githubUser);
+        $repositories = $this->getRepositories($this->githubUser);
 
         GithubUser::updateOrCreate($user);
         GithubUserRepository::where('github_user_id', $user['github_user_id'])->delete();
