@@ -19,9 +19,10 @@ class GithubCommand extends Command
     {
         $github_user = ($this->option('user') == '?') ? $this->ask('Github User') : $this->option('user');
 
-        $github = new GithubImporter();
-        $user = $github->getUser($github_user);
-        $repos = $github->getRepos($github_user);
+        $github = new GithubImporter($github_user);
+        $import = $github->import();
+        $user = $import['user'];
+        $repositories = $import['repositories'];
 
         $this->newLine();
         $this->table(
@@ -37,7 +38,7 @@ class GithubCommand extends Command
         );
 
         $this->newLine();
-        $this->line('Found '.count($repos).' repositories.');
+        $this->line('Found '.count($repositories).' repositories.');
         $this->newLine();
     }
 }

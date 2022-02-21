@@ -3,11 +3,21 @@
 namespace App\Utils;
 
 use GrahamCampbell\GitHub\Facades\GitHub;
+use App\Models\GithubUser;
+use App\Models\GithubUserRepository;
 
-class GithubImporter {
+class GithubImporter
+{
+    protected $github_user = null;
 
-    public function getUser(string $github_user): array {
-        $user = GitHub::user()->show($github_user);
+    public function __construct($github_user)
+    {
+        $this->github_user = $github_user;
+    }
+
+    public function getUser(): array
+    {
+        $user = GitHub::user()->show($this->github_user);
         return [
             'github_user_id' => $user['id'],
             'login' => $user['login'],
@@ -18,8 +28,9 @@ class GithubImporter {
         ];
     }
 
-    public function getRepos(string $github_user): array {
-        $repos = GitHub::user()->repositories($github_user);
+    public function getRepositories(): array
+    {
+        $repos = GitHub::user()->repositories($this->github_user);
         $userRepositories = [];
 
         foreach ($repos as $repo) {
@@ -34,5 +45,28 @@ class GithubImporter {
         }
 
         return $userRepositories;
+    }
+
+    public function import(): array
+    {
+        $user = $this->getUser($this->github_user);
+        $repositories = $this->getRepositories($this->github_user);
+
+        GithubUser::updateOrCreate($user);
+        GithubUserRepository::where('github_user_id', $user['github_user_id'])->delete();
+
+        $now = date('Y-m-d H:i:s');
+        foreach ($repositories as $repository => $repo) {
+            $repositories[$repository]['github_user_id'] = $user['github_user_id'];
+            $repositories[$repository]['created_at'] = $now;
+            $repositories[$repository]['updated_at'] = $now;
+        }
+
+        GithubUserRepository::insert($repositories);
+
+        return [
+            'user' => $user,
+            'repositories' => $repositories
+        ];
     }
 }
