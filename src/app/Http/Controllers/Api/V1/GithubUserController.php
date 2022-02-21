@@ -10,6 +10,13 @@ use App\Jobs\GithubImporterJob;
 
 class GithubUserController extends Controller
 {
+    public function getUsers(): object
+    {
+        $users = GithubUser::get();
+
+        return response()->json($users);
+    }
+
     public function getUser(string $githubUser): object
     {
         $user = GithubUser::where('login', $githubUser)->get();
