@@ -20,8 +20,8 @@ class GithubUsers extends Migration
             $table->string('login', 64)
                   ->index()
                   ->unique();
-            $table->string('name', 64);
-            $table->string('email', 256);
+            $table->string('name', 64)->nullable();
+            $table->string('email', 256)->nullable();
             $table->string('url', 256);
             $table->string('avatar_url', 256)->nullable();
             $table->timestamps();

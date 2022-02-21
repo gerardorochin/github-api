@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\GithubUser;
 
 class GithubUserRepository extends Model
 {
@@ -16,5 +17,14 @@ class GithubUserRepository extends Model
         'fork',
         'url',
     ];
-}
 
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
+
+    public function user()
+    {
+        return $this->hasMany(GithubUser::class, 'github_user_id');
+    }
+}

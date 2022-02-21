@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\GithubUserRepository;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,4 +17,14 @@ class GithubUser extends Model
         'url',
         'avatar_url',
     ];
+
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
+
+    public function repositories()
+    {
+        return $this->hasMany(GithubUserRepository::class, 'github_user_id');
+    }
 }
