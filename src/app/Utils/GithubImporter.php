@@ -9,7 +9,7 @@ class GithubImporter {
     public function getUser(string $github_user): array {
         $user = GitHub::user()->show($github_user);
         return [
-            'github_id' => $user['id'],
+            'github_user_id' => $user['id'],
             'login' => $user['login'],
             'url' => $user['html_url'],
             'name' => $user['name'],
