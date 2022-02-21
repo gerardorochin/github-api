@@ -23,7 +23,7 @@ class GithubUsers extends Migration
             $table->string('name', 64);
             $table->string('email', 256);
             $table->string('url', 256);
-            $table->string('avatar_url', 256);
+            $table->string('avatar_url', 256)->nullable();
             $table->timestamps();
         });
     }

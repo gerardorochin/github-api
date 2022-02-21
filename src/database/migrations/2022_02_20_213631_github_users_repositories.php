@@ -15,13 +15,12 @@ class GithubUsersRepositories extends Migration
     {
         Schema::create('github_users_repositories', function (Blueprint $table) {
             $table->bigInteger('github_user_id')
-                  ->index()
-                  ->unique();
+                  ->index();
             $table->bigInteger('github_repository_id')
                   ->index()
                   ->unique();
-            $table->string('name', 64);
-            $table->text('description');
+            $table->string('name', 64)->nullable();
+            $table->text('description')->nullable();
             $table->boolean('fork');
             $table->string('url', 256);
             $table->timestamps();
