@@ -10,7 +10,7 @@
 
 ### Available cli commands for maintain tasks
 
-Import user and repositories from github
+Import user and their repositories from github
 
 ```bash
     docker-compose exec api php artisan github:import --user=gerardorochin
