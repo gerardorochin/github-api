@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\GithubCommand::class,
+        Commands\GithubSyncCommand::class,
     ];
 
     /**
@@ -24,6 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //
+        // synchronize all github users every day at midnight
+        $schedule->command('github:sync')->daily();
     }
 }
