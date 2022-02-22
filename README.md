@@ -6,7 +6,20 @@
 
     # run database migrations
     docker-compose exec api php artisan migrate
+```
 
-    # import user and repositories via cli
+### Available cli commands for maintain tasks
+
+Import user and repositories from github
+
+```bash
     docker-compose exec api php artisan github:import --user=gerardorochin
 ```
+
+Synchronize all github users and repositories available on database
+
+```bash
+    docker-compose exec api php artisan github:sync
+```
+
+Note: Every day at midnight automatic synchronize of all github users is executed from command: ```php artisan github:sync``
