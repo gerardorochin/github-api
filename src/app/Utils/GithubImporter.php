@@ -53,16 +53,11 @@ class GithubImporter
         $repositories = $this->getRepositories($this->githubUser);
 
         GithubUser::updateOrCreate($user);
-        GithubUserRepository::where('github_user_id', $user['github_user_id'])->delete();
 
-        $now = date('Y-m-d H:i:s');
         foreach ($repositories as $repository => $repo) {
             $repositories[$repository]['github_user_id'] = $user['github_user_id'];
-            $repositories[$repository]['created_at'] = $now;
-            $repositories[$repository]['updated_at'] = $now;
+            GithubUserRepository::updateOrCreate($repositories[$repository]);
         }
-
-        GithubUserRepository::insert($repositories);
 
         return [
             'user' => $user,
