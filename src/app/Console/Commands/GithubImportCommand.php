@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Utils\GithubImporter;
 
-class GithubCommand extends Command
+class GithubImportCommand extends Command
 {
     protected $signature = 'github:import [{--user=?}]';
     protected $description = 'Github import user & repositories';
