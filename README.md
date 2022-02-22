@@ -22,4 +22,4 @@ Synchronize all github users and repositories available on database
     docker-compose exec api php artisan github:sync
 ```
 
-Note: Every day at midnight automatic synchronize of all github users is executed from command: ```php artisan github:sync``
+Note: Every day at midnight automatic synchronize of all github users is executed from command: ```php artisan github:sync```
