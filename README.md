@@ -1,9 +1,14 @@
-# Development
+# Start Development Environment 
 
 ```bash
     # run project on background
     docker-compose up -d
 
+    # copy default config for environment
+    cp src/.env.example src/.env
+    # and generate github token for GITHUB_TOKEN variable
+    # more info https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+    
     # run database migrations
     docker-compose exec api php artisan migrate
 ```
