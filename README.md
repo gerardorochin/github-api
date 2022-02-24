@@ -53,6 +53,9 @@ Requirements:
 * [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 
 ```bash
+  # generate github token for GITHUB_TOKEN variable, and set on manifests/github-api-configmap.yaml
+  # more info https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+
   # setup environment for kubernetes
   kubectl create namespace github-api
   kubectl apply -f manifests/
