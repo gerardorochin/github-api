@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: github-api
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: api
+  POSTGRES_USER: api
+  POSTGRES_PASSWORD: password
