@@ -19,12 +19,13 @@ class GithubUserRepository extends Model
     ];
 
     protected $hidden = [
+        'github_user_id',
         'updated_at',
         'created_at',
     ];
 
-    public function user()
+    public function user(): object
     {
-        return $this->hasMany(GithubUser::class, 'github_user_id');
+        return $this->belongsTo(GithubUser::class, 'github_user_id');
     }
 }

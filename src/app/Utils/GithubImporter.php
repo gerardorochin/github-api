@@ -21,9 +21,9 @@ class GithubImporter
         return [
             'github_user_id' => $user['id'],
             'login' => $user['login'],
-            'url' => $user['html_url'],
             'name' => $user['name'],
             'email' => $user['email'],
+            'url' => $user['html_url'],
             'avatar_url' => $user['avatar_url'],
         ];
     }

@@ -23,8 +23,13 @@ class GithubUser extends Model
         'created_at',
     ];
 
-    public function repositories()
+    public function repositories(): object
     {
         return $this->hasMany(GithubUserRepository::class, 'github_user_id');
+    }
+
+    public function whereLogin(string $githubUser): object
+    {
+        return $this->where('login', $query);
     }
 }

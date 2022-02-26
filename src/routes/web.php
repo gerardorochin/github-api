@@ -21,5 +21,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->group(['prefix' => 'v1'], function () use ($router) {
         $router->get('users', 'Api\V1\GithubUserController@getUsers');
         $router->get('users/{githubUser}', 'Api\V1\GithubUserController@getUser');
+        $router->get('users/{githubUser}/repositories', 'Api\V1\GithubUserRepositoryController@getUserRepositories');
     });
 });
