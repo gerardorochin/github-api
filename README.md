@@ -12,6 +12,14 @@ I'm used the Github API (It is public and free!) to fetch the information about 
 * [Lumen](https://lumen.laravel.com/)
 * [PostgreSQL](https://www.postgresql.org/)
 
+## Endpoints available
+
+URL: [http://localhost:8080](http://localhost:8080)
+
+* GET [/api/v1/users](http://localhost:8080/api/v1/users)
+* GET [/api/v1/users/{user}](http://localhost:8080/api/v1/users/gerardorochin)
+* GET [/api/v1/users/{user}/repositories](http://localhost:8080/api/v1/users/gerardorochin/repositories)
+
 ## Development Environment
 
 Requirements:
@@ -60,7 +68,7 @@ Requirements:
   kubectl create namespace github-api
   kubectl apply -f manifests/
 
-  # port forward to open on your browser
+  # port forward to open on your browser -> http://localhost:8080
   kubectl -n github-api port-forward service/github-api 8080:8080
 
   # view all resources
