@@ -14,6 +14,14 @@ I'm used the Github API (It is public and free!) to fetch the information about 
 
 ## Endpoints available
 
+This API is protected by API token, send by query string api_token=<XXX>.
+
+To get any valid token via database:
+
+```bash
+  SELECT api_token FROM users;
+´´´
+
 URL: [http://localhost:8080](http://localhost:8080)
 
 * GET [/api/v1/users](http://localhost:8080/api/v1/users)
@@ -37,6 +45,7 @@ Requirements:
 
     # run database migrations
     docker-compose exec api php artisan migrate
+    docker-compose exec api php artisan migrate --seed
 ```
 
 ### Available cli commands for maintain tasks
